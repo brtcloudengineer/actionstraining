@@ -25,14 +25,11 @@ jobs:
           
   Test:
     runs-on: ubuntu-latest
-    environment: Test
+    if: github.event_name == 'workflow_dispatch'
     needs: build
-    
+    environment: Test
     steps:
-      - uses: actions/download-artifact@v2
-      - run: |
-          write-output "Done!"
-        shell: pwsh
+      - run: echo "🧪 Testing..."
   Load-Test:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
